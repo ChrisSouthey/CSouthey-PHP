@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset = "UTF-8">
+        <meta charset="UTF-8">
         <title>Chris's Site</title>
     </head>
-
     <body>
 
-    <h1>Hello!</h1>
+    <h1>Chris's Site</h1>
 
-    <h2>Test</h2>
+    <p> <?php  echo "This is some text"; ?> </p>
 
-    <h2>YEa</h2>
+    <p> <?= "This is some text"; ?> </p>
+
     </body>
 </html>

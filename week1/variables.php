@@ -1,9 +1,14 @@
 <?php
 
-$Stuff = 'Apple';
+$stuff = true;
 
-$first = 'Chris';
-$last = 'Southey';
+$stuff = 10;
+
+$stuff = array('bird', 'cat', 'dog', 'fish');
+
+$stuffLength = count($stuff);
+
+$title = "Doug's Awesome PHP Site";
 
 ?>
 
@@ -12,16 +17,24 @@ $last = 'Southey';
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset = "UTF-8">
-        <title>Chris's Site</title>
+        <meta charset="UTF-8">
+        <title><?= $title; ?></title>
     </head>
-
     <body>
 
-    <h1>Vars</h1>
 
-    <h2><?= $Stuff ?></h2>
+    <ul>
+        <?php for($i = 0; $i < $stuffLength; $i++){ ?>
+            <li><?php echo $stuff[$i]; ?></li>
+        <?php } ?>
+    </ul>
 
-    <h2><?= $first . ' ' . $last ?></h2>
+    <ul>
+        <?php foreach($stuff as $s): ?>
+            <li><?= $s; ?></li>
+        <?php endforeach; ?>
+    </ul>
+
+
     </body>
-</html>
+</html>    
