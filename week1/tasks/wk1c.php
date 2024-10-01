@@ -10,6 +10,7 @@ $animals = array('Dog', 'Cat', 'Bird', 'Horse', 'Cow', 'Chicken')
 <h1>Week 1 Task C</h1>
 
 <ul>
+    <!-- Looping through the animals -->
     <?php foreach($animals as $a): ?>
         <li><?= $a; ?></li>
     <?php endforeach; ?>
