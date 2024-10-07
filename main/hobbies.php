@@ -1,5 +1,6 @@
 <?php include 'includes/header.php'; ?>
 
+<?php include 'includes/style.php'; ?>
 
 <h1>Chris's PHP Master Page</h2>
 <a href="../">Back to Main Page</a><br/>
