@@ -7,7 +7,9 @@ include '../includes/functions.php';
 $fName = '';
 $lName = '';
 $married = '';
-$birthDate = '';
+$birthMonth = '';
+$birthDay = '';
+$birthYear = '';
 $height = '';
 $weight = '';
 $error = '';
@@ -37,11 +39,28 @@ else{
 }
 
 //Birth Date
-if(isDate($birthDate) == true){
-    $birthDate = filter_input(INPUT_POST, 'height');
+//Month
+if(filter_input(INPUT_POST, 'birthMonth') > '' && filter_input(INPUT_POST, 'birthMonth') > 0 && filter_input(INPUT_POST, 'birthMonth') < 13 ){
+    $birthMonth = filter_input(INPUT_POST, 'birthMonth');
 }
 else{
-    $error .= 'Must enter a number valid date <br/>';
+    $error .= 'Must enter a number between 1 and 12 <br/>';
+}
+
+//Day
+if(filter_input(INPUT_POST, 'birthDay') > '' && filter_input(INPUT_POST, 'birthDay') > 0 && filter_input(INPUT_POST, 'birthDay') < 32 ){
+    $birthDay = filter_input(INPUT_POST, 'birthDay');
+}
+else{
+    $error .= 'Must enter a number between 1 and 31 <br/>';
+}
+
+//Year
+if(filter_input(INPUT_POST, 'birthYear') > '' && filter_input(INPUT_POST, 'birthYear') > 1899 && filter_input(INPUT_POST, 'birthYear') < 2025 ){
+    $birthYear = filter_input(INPUT_POST, 'birthYear');
+}
+else{
+    $error .= 'Must enter a valid birth year (1900 - 2024) <br/>';
 }
 
 //Height
@@ -89,8 +108,10 @@ else{
         </div>
 
         <div class="form-control">
-            <label for="birthDate">Birth Date (mm/dd/yyyy):</label><br />
-            <input type="text" name="birthDate" value="<?= $birthDate; ?>">
+            <label for="birthDate">Birth Date (Ex. 1/1/2000):</label><br />
+            <input type="text" name="birthMonth" size="1" value="<?= $birthMonth; ?>">
+            <input type="text" name="birthDay" size="1" value="<?= $birthDay; ?>">
+            <input type="text" name="birthYear" size="1"value="<?= $birthYear; ?>">
         </div>
 
         <div class="form-control">
@@ -114,7 +135,7 @@ else{
 <div>
 <p style="color:red"><?= $error; ?></p>
 <h2>Form Results</h2>
-<p>Age: <p>
+<p>Age: <?= age($birthYear) ?><p><p>
 <p>BMI: <?= round(bmi($height, $weight), 1) ?><p>
 <p>BMI Classification: <?= bmiDescription(bmi($height, $weight)) ?><p>
 </div>

@@ -3,11 +3,9 @@
 include '../includes/header.php'; 
 
 
-function age ($bdate) {
-    $date = new DateTime($bdate);
-    $now = new DateTime();
-    $interval = $now->diff($date);
-    return $interval->y;
+function age($year) {
+    $age = 2024 - $year;
+    return $age;
 }
  
 function isDate($dt) {
