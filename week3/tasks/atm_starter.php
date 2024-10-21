@@ -1,14 +1,14 @@
-<?php include 'account.php' ?>;
-<?php include 'checking.php' ?>;
-<?php include 'savings.php' ?>;
+<?php include 'account.php' ?>
+<?php include 'checking.php' ?>
+<?php include 'savings.php' ?>
 <?php
+
     if (isset ($_POST['withdrawChecking'])) 
     {
-        if (isset($_POST['amount'])) {
-            $amount = $_POST['amount'];
-            
-            $checking->withdraw($amount);
-        }
+        $amount = $_POST['checkingWithdrawAmount'];
+        $checking->withdrawal($amount);
+        
+
     } 
     else if (isset ($_POST['depositChecking'])) 
     {
@@ -21,8 +21,19 @@
     else if (isset ($_POST['depositSavings'])) 
     {
         echo "I pressed the savings deposit button";
-    } 
-     
+    }  
+
+    $checkAmt = 1000;
+    $savingAmt = 5000;
+
+    if(isset($_POST["checking"])){;
+        $checkAmt = $_POST["checking"];
+    }
+
+    if(isset($_POST["savings"])){
+        $savingAmt = $_POST["savings"];
+    }
+
 ?>
 
 <!DOCTYPE html>

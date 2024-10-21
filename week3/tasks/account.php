@@ -15,10 +15,10 @@ abstract class Account
 	protected $startDate;
 	protected $str = '';
 	
-	public function __construct ($id, $balance, $startDate) 
+	public function __construct ($id, $bal, $startDate) 
 	{
 	   $this->id = $id;
-	   $this->balance = $balance;
+	   $this->bal = $bal;
 	   $this->startDate = $startDate;
 	}
 	
@@ -39,7 +39,7 @@ abstract class Account
 
 	public function getBalance() 
 	{
-		return $this->balance;
+		return $this->bal;
 	} 
 
 	public function getAccountId() 
