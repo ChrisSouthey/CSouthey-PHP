@@ -8,7 +8,10 @@ class CheckingAccount extends Account
 
 	public function withdrawal($amount) 
 	{
-		// write code here. Return true if withdrawal goes through; false otherwise
+		if ($amount >0 && $amount >= $amount){
+			$this->balance -= $amount;
+			echo 'WITHDRAWN';
+		}
 	} // end withdrawal
 
 	//freebie. I am giving you this code.
@@ -31,6 +34,6 @@ $checking->withdrawal(200);
 $checking->deposit(500);
 
 echo $checking->getAccountDetails();
-echo $checking->getStartDate();
-    */
+echo $checking->getStartDate();*/
+    
 ?>

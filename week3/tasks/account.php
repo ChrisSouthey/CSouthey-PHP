@@ -15,11 +15,11 @@ abstract class Account
 	protected $startDate;
 	protected $str = '';
 	
-	public function __construct ($id, $bal, $startDt) 
+	public function __construct ($id, $balance, $startDate) 
 	{
-	   $this->accountId = $id;
-	   $this->balance = $bal;
-	   $this->startDate = $startDt;
+	   $this->id = $id;
+	   $this->balance = $balance;
+	   $this->startDate = $startDate;
 	}
 	
 	public function deposit ($amount) 
@@ -44,15 +44,17 @@ abstract class Account
 
 	public function getAccountId() 
 	{
-		return $this->accountId;
+		return $this->id;
 	} 
 
 	// Display AccountID, Balance and StartDate in a nice format
 	protected function getAccountDetails()
 	{
-		return '<h2>Account ID: <?= Account->getAccountId() ?></h2>';
-		return '<h2>Balance: <?= Account->getBalance() ?></h2>';
-		return '<h2>Account Opened: <?= Account->getStartDate() ?></h2>';
+		return '<li>Account ID: ' . $this->getAccountId() . '</li>' . 
+		'<li>Balance: ' . $this->getBalance() . '</li>' . 
+		'<li>Account Opened: ' . $this->getStartDate() . '</li>';
+		
+		
 	} // end getAccountDetails
 	
 } // end account

@@ -4,7 +4,11 @@
 <?php
     if (isset ($_POST['withdrawChecking'])) 
     {
-        echo "I pressed the checking withdrawal button";
+        if (isset($_POST['amount'])) {
+            $amount = $_POST['amount'];
+            
+            $checking->withdraw($amount);
+        }
     } 
     else if (isset ($_POST['depositChecking'])) 
     {
@@ -64,7 +68,7 @@
             
             <div class="account">
               
-                <div><?= $checking->getAccountDetails(); ?></div>
+                <div><?= $checking->getAccountDetails() ?></div>
                     
                     <div class="accountInner">
                         <div></div>
@@ -81,7 +85,7 @@
             <div class="account">
                
                 
-                    
+                <div><?= $savings->getAccountDetails() ?></div>
                     <div class="accountInner">
                         <input type="text" name="savingsWithdrawAmount" value="" />
                         <input type="submit" name="withdrawSavings" value="Withdraw" />
