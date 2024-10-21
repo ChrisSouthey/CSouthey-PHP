@@ -1,15 +1,14 @@
 <?php
 
-class Person
+abstract class Person
 {
-    private $first;
-    private $last;
+    protected $first;
+    protected $last;
 
-    public function __contruct($firstArg, $lastArg){
-        $this->$first = $firstArg;
-        $this->$last = $lastArg;
+    public function __construct($firstArg, $lastArg){
+        $this->first = $firstArg;
+        $this->last = $lastArg;
     }
-
 
     public function setFirst($firstArg){
         $this->first = $firstArg;
@@ -20,13 +19,21 @@ class Person
     }
 
     public function setLast($lastArg){
-        $this->flast = $lastArg;
+        $this->last = $lastArg;
     }
 
     public function getLast(){
         return $this->last;
     }
+
+    public function getFullName(){
+        return $this->first . ' ' . $this->last;
+    }
+
+    abstract function getPersonInfo();
 }
+
+
 
 
 

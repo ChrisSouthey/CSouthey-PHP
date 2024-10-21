@@ -1,7 +1,7 @@
 <?php 
 
 include '../includes/header.php';
-include '../includes/functions.php';
+include '../model/model_patients.php';
 
 
 $fName = '';
@@ -10,7 +10,7 @@ $married = '';
 $birthMonth = '';
 $birthDay = '';
 $birthYear = '';
-$birthDate = $birthYear . '/' . $birthMonth . '/' . $birthDay
+$birthDate = $birthYear . '/' . $birthMonth . '/' . $birthDay;
 $height = '';
 $weight = '';
 $error = '';
@@ -64,31 +64,33 @@ else{
     $error .= 'Must enter a valid birth year (1900 - 2024) <br/>';
 }
 
-//Height
-if(filter_input(INPUT_POST, 'height') > '' && filter_input(INPUT_POST, 'height') > 0 && filter_input(INPUT_POST, 'height') < 81 ){
-    $height = filter_input(INPUT_POST, 'height');
+if (isset($_POST['submit'])) {
+    $fName = filter_input(INPUT_POST, 'fName');
+    $lName = filter_input(INPUT_POST, 'lName');
+    $married = filter_input(INPUT_POST, 'married');
+    $birthDate = filter_input(INPUT_POST, 'birthDate');
+    /*
+    if ($teamName == "") $error .= "<li>Please provide team name</li>";
+    if ($teamConference == "") $error .= "<li>Please provide team conference</li>";
+    if ($teamDivision == "") $error .= "<li>Please provide team division</li>";
+    if ($teamPoints == "") $error .= "<li>Please provide team points (#)</li>";*/
+    
+    if ($error == ""){
+        addTeam ($fName, $lName, $married, $birthDate);
+        header('Location: viewPatients.php');
+        exit();
+    }
 }
-else{
-    $error .= 'Must enter a number between 0 and 80 Inches <br/>';
-}
-
-//Weight
-if(filter_input(INPUT_POST, 'weight') > '' && filter_input(INPUT_POST, 'weight') > 0 && filter_input(INPUT_POST, 'weight') < 301 ){
-    $weight = filter_input(INPUT_POST, 'weight');
-}
-else{
-    $error .= 'Must enter a number between 0 and 300 Pounds <br/>';
-}
-
 
 
 
 ?>
 
-<h1>Week 2 Task B</h1>
 
+<h1>Patient Intake Form</h1>
 
-<h2>Patient Intake Form</h2>
+<a href="viewPatients.php">Back to Patient List</a>
+<hr>
 <div class="form-wrapper">
 
     <form name="patient_intake" method="post">
@@ -115,15 +117,8 @@ else{
             <input type="text" name="birthYear" size="1"value="<?= $birthYear; ?>">
         </div>
 
-        <div class="form-control">
-            <label for="height">Height (In Inches):</label><br />
-            <input type="text" name="height" value="<?= $height; ?>">
-        </div>
 
-        <div class="form-control">
-            <label for="Weight">Weight (In Pounds):</label><br />
-            <input type="text" name="weight" value="<?= $weight; ?>">
-        </div>
+</br>
 
         <div class="form-submit">
             <input type="submit" name="submit" value="Submit">
@@ -133,13 +128,7 @@ else{
 
 </div>
 
-<div>
-<p style="color:red"><?= $error; ?></p>
-<h2>Form Results</h2>
-<p>Age: <?= age($birthYear) ?><p><p>
-<p>BMI: <?= round(bmi($height, $weight), 1) ?><p>
-<p>BMI Classification: <?= bmiDescription(bmi($height, $weight)) ?><p>
-</div>
+
 
 
 
