@@ -24,7 +24,10 @@ abstract class Account
 	
 	public function deposit ($amount) 
 	{
-		// write code here
+		if($amount <= 0){
+			echo "Amount must be more than 0.";
+		}
+		$this->bal += $amount;
 	} // end deposit
 
 	// This is an abstract method. 

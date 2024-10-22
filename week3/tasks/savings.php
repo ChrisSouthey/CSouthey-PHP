@@ -7,7 +7,18 @@ class SavingsAccount extends Account
 
 	public function withdrawal($amount) 
 	{
-		// write code here. Return true if withdrawal goes through; false otherwise
+		if ($amount <= 0) {
+            echo "Withdrawal amount must be greater than 0<br>";
+            return;
+        }
+
+
+        // Subtract the amount from the current balance
+        $this->bal -= $amount;
+
+        // Show the updated balance
+        echo "New balance after withdrawal: $" . $this->bal . "<br>";
+    
 	} //end withdrawal
 
 	public function getAccountDetails() 

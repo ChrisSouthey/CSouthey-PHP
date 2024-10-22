@@ -1,54 +1,48 @@
 <?php
- 
+
 require_once "./account.php";
 
 class CheckingAccount extends Account 
 {
-	const overdrawLimit = -200;
+    const overdrawLimit = -200;  // Minimum allowed balance
 
-	public function withdrawal($amount)
-	{
-		$checkingAmt = 0;
+    // Method to withdraw money
+    public function withdrawal($amount)
+    {
+        if ($amount <= 0) {
+            echo "Withdrawal amount must be greater than 0<br>";
+            return;
+        }
 
-		if($amount <= 0){
-			echo "Withdrawal amount must be greater than 0";
-		}
-	
+        if ($this->bal - $amount < self::overdrawLimit) {
+            $formattedOverdrawLimit = "$" . self::overdrawLimit;
+            echo "Checking account cannot go below $formattedOverdrawLimit<br>";
+            return;
+        }
 
-		else if($this->bal - $amount < self::overdrawLimit){
-			$formattedOverdrawLimit = "$" . self::overdrawLimit;
-			echo "Checking account cannot go below $formattedOverdrawLimit.";
-		}
-		$checkingAmt = $this->bal -= $amount;
-		echo $checkingAmt;
-		$this->bal = $checkingAmt;
+        // Subtract the amount from the current balance
+        $this->bal -= $amount;
 
-		/*if($this->bal < -200){
-			echo "Balance cannot go lower than -200";
-		}*/
-		
-	} // end withdrawal
+        // Show the updated balance
+        echo "New balance after withdrawal: $" . $this->bal . "<br>";
+    }
 
-	//freebie. I am giving you this code.
-	public function getAccountDetails() 
-	{
-		$accountDetails = "<h2>Checking Account</h2>";
-		$accountDetails .= parent::getAccountDetails();
-		
-		return $accountDetails;
-	}
+    // Freebie: returning account details
+    public function getAccountDetails() 
+    {
+        $accountDetails = "<h2>Checking Account</h2>";
+        $accountDetails .= parent::getAccountDetails();
+
+        return $accountDetails;
+    }
 }
 
+// Create a new CheckingAccount object
+$checking = new CheckingAccount('C123', 1000, '12-20-2019');
 
-// The code below runs everytime this class loads and 
-// should be commented out after testing.
 
-$checking = new CheckingAccount ('C123', 1000, '12-20-2019');
-/*
-$checking->withdrawal(200);
-$checking->deposit(500);
+// Uncomment these for additional functionality testing
+// echo $checking->getAccountDetails();
+// echo $checking->getStartDate();
 
-echo $checking->getAccountDetails();
-echo $checking->getStartDate();*/
-    
 ?>
