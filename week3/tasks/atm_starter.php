@@ -9,6 +9,7 @@
         $checking->withdrawal($amount);
         
 
+
     } 
     else if (isset ($_POST['depositChecking'])) 
     {
@@ -27,7 +28,8 @@
     $savingAmt = 5000;
 
     if(isset($_POST["checking"])){;
-        $checkAmt = $_POST["checking"];
+        $checkAmt = $_POST["$checking->bal"];
+        $checking->bal = $checkAmt;
     }
 
     if(isset($_POST["savings"])){

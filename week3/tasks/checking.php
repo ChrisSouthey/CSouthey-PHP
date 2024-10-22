@@ -6,8 +6,10 @@ class CheckingAccount extends Account
 {
 	const overdrawLimit = -200;
 
-	public function withdrawal($amount): void
+	public function withdrawal($amount)
 	{
+		$checkingAmt = 0;
+
 		if($amount <= 0){
 			echo "Withdrawal amount must be greater than 0";
 		}
@@ -17,7 +19,10 @@ class CheckingAccount extends Account
 			$formattedOverdrawLimit = "$" . self::overdrawLimit;
 			echo "Checking account cannot go below $formattedOverdrawLimit.";
 		}
-		$this->bal -= $amount;
+		$checkingAmt = $this->bal -= $amount;
+		echo $checkingAmt;
+		$this->bal = $checkingAmt;
+
 		/*if($this->bal < -200){
 			echo "Balance cannot go lower than -200";
 		}*/
