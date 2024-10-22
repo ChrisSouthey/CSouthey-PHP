@@ -37,8 +37,6 @@
             </tbody>
         </table>
 
-        <a href="../../week2/tasks/wk2b.php">Add New Patient</a>
-
     </div>
 </div>
 
