@@ -10,7 +10,7 @@
     <div class="col-sm-12">
         <h1>Patient's list</h1>
 
-        <a href="managePatients.php?action=Add">Add New Patient</a>
+        <a href="managePatients.php?Action=Add">Add New Patient</a>
 
         <table class="table table-striped">
             <thead>

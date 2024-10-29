@@ -63,7 +63,7 @@ function updatePatient($id, $pFirstName, $pLastName, $pMarried, $pBirthDate){
 
     $result = '';
 
-    $sql = 'UPDATE patients SET patientFirstName = :f, patientLastName = :l, patientMarried = :m, patientBirthDate = :b';
+    $sql = 'UPDATE patients SET patientFirstName = :f, patientLastName = :l, patientMarried = :m, patientBirthDate = :b WHERE ID = :id';
 
     $stmt = $db->prepare($sql);
 
