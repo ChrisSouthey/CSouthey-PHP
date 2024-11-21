@@ -3,6 +3,7 @@
 include 'includes/header.php';
 include 'includes/style.php';
 include 'model/model_guitars.php';
+session_start();
 
 $guitars = getGuitars();
 $brand = '';

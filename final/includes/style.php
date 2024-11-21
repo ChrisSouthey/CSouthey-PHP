@@ -30,7 +30,7 @@
         margin-left:560px;
     }
     nav a:hover{
-        color:#2F4F4F;
+        color:#FFFFFF;
     }
 
     /* -------------------------MAIN SECTION -----------------------*/
@@ -73,7 +73,33 @@
     input[type="submit"]:hover{
         background-color:brown;
     }
-
+    
+    /* ---------Manage info ------ */
+    .man{
+        display:flex;
+        color:white;
+        font-size: 36px;
+        margin-left:80px;
+        margin-bottom:10px;
+    }
+    .man input{
+        margin-left:10px;
+        font-size:20px;
+    }
+    .sub input{
+        margin-bottom:10px;
+    }
+    .addlink{
+        margin-left:30px;
+        margin-bottom:10px;
+    }
+    .btnerr{
+        display:flex;
+        color:white;  
+    }
+    .error{
+        margin-left:10px;
+    }
     /* ---------------------------SIDE BAR -----------------------*/
     .side{
         background-color:#2F2F2F;
@@ -105,7 +131,13 @@
     th, td{
         padding:15px;
     }
-
+    .info a{
+        color:#B74343;
+        text-decoration:none;
+    }
+    .info a:hover{
+        color:brown;
+    }
 
     /* ------------------------------------FOOTER ---------------------------------*/
     footer{

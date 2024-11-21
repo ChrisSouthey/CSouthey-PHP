@@ -44,6 +44,26 @@ function addGuitar($gBrand, $gModel, $gColor, $gBridge, $gPickups, $gStrings, $g
     return $result;
 }
 
+function getGuitar($id){
+    global $db;
+
+    $result = [];
+
+    $sql = 'SELECT * FROM guitars WHERE ID = :id';
+
+    $stmt = $db->prepare($sql);
+
+    $binds = array(
+        ':id'=> $id
+    );
+
+    if ( $stmt->execute($binds) && $stmt->rowCount() > 0){
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    return $result;
+}
+
 
 
 

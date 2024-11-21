@@ -15,7 +15,7 @@ $pickups = '';
 
 <nav>
     <h1>Guitar Hub</h1>
-    <a href="login.php">Log In</a>
+    <a href="logoff.php">Log Out</a>
 </nav>
 
 <section class="main">
@@ -23,7 +23,8 @@ $pickups = '';
         
     </div>
     <div class="info" > 
-        <h2>Our Guitars</h2>
+        <h2>Welcome <?= $_SESSION['username']; ?>,</h2>
+        <h3 class="addlink"><a href="manageGuitars.php?Action=Add">Add Guitar to Stock</a></h3>
         <table class="table table-striped">
                 <thead>
                     <tr>
@@ -35,6 +36,7 @@ $pickups = '';
                         <th>Pickups</th>
                         <th>Strings</th>
                         <th>Price</th>
+                        <th>Admin</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +50,7 @@ $pickups = '';
                             <td><?= $guitar['pickups']; ?></td>
                             <td><?= $guitar['strings']; ?></td>
                             <td><?= $guitar['price']; ?></td>
+                            <td><a href="manageGuitars.php?Action=Edit&ID=<?= $guitar['id']; ?>">Edit</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
