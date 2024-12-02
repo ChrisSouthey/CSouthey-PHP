@@ -17,6 +17,25 @@ function getGuitars(){
     return $results;
 }
 
+function getGuitar($id){
+    global $db;
+
+    $result = [];
+
+    $stmt = $db->prepare("SELECT * FROM guitars WHERE id = :id");
+
+    $binds = array(
+        ':id'=> $id
+    );
+
+    if ( $stmt->execute($binds) && $stmt->rowCount() > 0){
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    return $result;
+}
+
+
 function addGuitar($gBrand, $gModel, $gColor, $gBridge, $gPickups, $gStrings, $gPrice){
 
     global $db;
@@ -44,12 +63,13 @@ function addGuitar($gBrand, $gModel, $gColor, $gBridge, $gPickups, $gStrings, $g
     return $result;
 }
 
-function getGuitar($id){
+
+function deleteGuitar($id){
     global $db;
 
-    $result = [];
+    $result = '';
 
-    $sql = 'SELECT * FROM guitars WHERE ID = :id';
+    $sql = 'DELETE FROM guitars WHERE id = :id';
 
     $stmt = $db->prepare($sql);
 
@@ -57,12 +77,41 @@ function getGuitar($id){
         ':id'=> $id
     );
 
-    if ( $stmt->execute($binds) && $stmt->rowCount() > 0){
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($stmt->execute($binds) && $stmt->rowCount() > 0){
+        $result = 'Guitar Deleted';
     }
 
     return $result;
 }
+
+
+function updateGuitar($id, $gBrand, $gModel, $gColor, $gBridge, $gPickups, $gStrings, $gPrice) {
+    global $db;
+
+    $result = '';
+
+    $sql = 'UPDATE guitars SET brand = :b, model = :m, color = :c, bridge = :br, pickups = :p, strings = :s, price = :pr WHERE id = :id';
+
+    $stmt = $db->prepare($sql);
+
+    $binds = array(
+        ':id'=> $id,
+        ":b" => $gBrand,
+        ":m" => $gModel,
+        ':c' => $gColor,
+        ':br' => $gBridge,
+        ":p" => $gPickups,
+        ":s" => $gStrings,
+        ":pr" => $gPrice
+    );
+
+    if($stmt->execute($binds) && $stmt->rowCount() > 0){
+        $result = 'Guitar Updated';
+    }
+
+    return $result;
+}
+
 
 
 

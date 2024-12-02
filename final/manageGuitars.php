@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 include 'includes/header.php';
 include 'includes/style.php';
 include 'model/model_guitars.php';
@@ -17,9 +17,9 @@ $error = '';
 if (isset($_GET['Action'])) {
     $action = filter_input(INPUT_GET,'Action');
     $id = filter_input(INPUT_GET,'ID');
-
+    
     $guitar = getGuitar($id);
-
+    
     if($guitar){
         $brand = $guitar['brand'];
         $model = $guitar['model'];
@@ -76,12 +76,43 @@ else{
     $error .= 'Strings must be either 12 or between 4 and 8 <br/>';
 }
 //Price
-if(filter_input(INPUT_POST, 'price') != '' && filter_input(INPUT_POST, 'price') < 0){
+if(filter_input(INPUT_POST, 'price') != '' && filter_input(INPUT_POST, 'price') > 0){
     $price = filter_input(INPUT_POST, 'price');
 }
 else{
     $error .= 'Must enter a valid Price <br/>';
 }
+
+//------------------------BUTTON STUFF ------------------------->
+if (isset($_POST['brand'])) {
+    $brand = filter_input(INPUT_POST, 'brand');
+    $model = filter_input(INPUT_POST, 'model');
+    $color = filter_input(INPUT_POST, 'color');
+    $bridge = filter_input(INPUT_POST, 'bridge');
+    $pickups = filter_input(INPUT_POST, 'pickups');
+    $strings = filter_input(INPUT_POST, 'strings');
+    $price = filter_input(INPUT_POST, 'price');
+
+    if ($error == ""){
+
+        if(isset($_POST["add"])){
+            addGuitar($brand, $model, $color, $bridge, $pickups, $strings, $price);
+            header('Location: admin_page.php');
+            exit();
+        }
+        else if(isset($_POST["update"])){
+            updateGuitar($id, $brand, $model, $color, $bridge, $pickups, $strings, $price);
+            header('Location: admin_page.php');
+            exit();
+        }
+        else if(isset($_POST["delete"])){
+            deleteGuitar($id);
+            header('Location: admin_page.php');
+            exit();
+        }
+    }
+}
+
 
 ?>
 
@@ -99,37 +130,37 @@ else{
 
             <div id="brand" class="man"> <!-- BRAND -->
                 <h3>Brand: </h3>
-                <input type="text" name="brand" value="">
+                <input type="text" name="brand" value="<?= $brand; ?>">
             </div>
 
             <div id="model" class="man"> <!-- MODEL -->
                 <h3>Model: </h3>
-                <input type="text" name="model" value="">
+                <input type="text" name="model" value="<?= $model; ?>">
             </div>
 
             <div id="color" class="man"> <!-- COLOR -->
                 <h3>Color: </h3>
-                <input type="text" name="color" value="">
+                <input type="text" name="color" value="<?= $color; ?>">
             </div>
 
             <div id="bridge" class="man"> <!-- BRIDGE -->
                 <h3>Bridge: </h3>
-                <input type="text" name="bridge" value="">
+                <input type="text" name="bridge" value="<?= $bridge; ?>">
             </div>
 
             <div id="pickup" class="man"> <!-- PICKUPS -->
                 <h3>Pickups: </h3>
-                <input type="text" name="pickups" value="">
+                <input type="text" name="pickups" value="<?= $pickups; ?>">
             </div>
 
             <div id="string" class="man"> <!-- STRINGS -->
                 <h3>Strings: </h3>
-                <input type="text" name="strings" value="">
+                <input type="text" name="strings" value="<?= $strings; ?>">
             </div>
 
             <div id="price" class="man"> <!-- PRICE -->
                 <h3>Price: </h3>
-                <input type="text" name="price" value="">
+                <input type="text" name="price" value="<?= $price; ?>">
             </div>
 
             <div class="btnerr">

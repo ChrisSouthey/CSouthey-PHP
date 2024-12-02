@@ -106,6 +106,32 @@
         height:100%;
         width:250px;
     }
+    .sea{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        color:white;
+        font-size: 30px;
+        margin-bottom:10px;
+    }
+    .sea input{
+        margin:0 10px;
+        font-size:40px; 
+    }
+    .sea input[type="submit"]{
+        font-size:20px;
+    }
+    .sea h3{
+        margin-left:50px;
+    }
+    .filt{
+        display:flex;
+        justify-content:center;
+        color:white;
+        font-size: 30px;
+        margin-bottom:10px;
+    }
+    
 
     /* ---------------------------INFO------------------------ */
     .info{

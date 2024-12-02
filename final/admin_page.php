@@ -20,7 +20,26 @@ $pickups = '';
 
 <section class="main">
     <div class="side">
-        
+        <div class="filt"> <!-- FILTER LABEL -->
+            <h3>Filter</h3>
+        </div>
+        <form method="post">
+            <div id="brand" class="sea"> <!-- BRAND SEARCH -->
+                <h3>Brand</h3>
+                <input type="text" name="brand" value="">
+            </div>
+            <div id="model" class="sea"> <!-- MODEL SEARCH -->
+                <h3>Model</h3>
+                <input type="text" name="model" value="">
+            </div>
+            <div id="strings" class="sea"> <!-- STRINGS SEARCH -->
+                <h3>Strings</h3>
+                <input type="text" name="strings" value="">
+            </div>
+            <div class="sea"> <!-- SEARCH BUTTON -->
+                <input type="submit" name="search" value="Search">
+            </div>
+        <form>
     </div>
     <div class="info" > 
         <h2>Welcome <?= $_SESSION['username']; ?>,</h2>

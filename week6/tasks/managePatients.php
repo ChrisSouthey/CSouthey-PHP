@@ -14,13 +14,13 @@
     $height = '';
     $weight = '';
     $error = '';
-
+    
     if (isset($_GET['Action'])) {
         $action = filter_input(INPUT_GET,'Action');
         $id = filter_input(INPUT_GET,'ID');
 
         $patient = getPatient($id);
-
+        
         if($patient){
             $fName = $patient['patientFirstName'];
             $lName = $patient['patientLastName'];
