@@ -98,7 +98,9 @@
         color:white;  
     }
     .error{
-        margin-left:10px;
+        color:white;
+        font-size:30px;
+        margin-left:80px;
     }
     /* ---------------------------SIDE BAR -----------------------*/
     .side{
@@ -178,11 +180,3 @@
         margin-left:20px;
     }
 
-
-
-
-
-
-
-
-</style>
