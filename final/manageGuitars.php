@@ -1,7 +1,5 @@
 <?php 
 
-include 'includes/header.php';
-include 'includes/style.php';
 include 'model/model_guitars.php';
 
 
@@ -113,7 +111,8 @@ if (isset($_POST['brand'])) {
     }
 }
 
-
+include 'includes/header.php';
+include 'includes/style.php';
 ?>
 
 

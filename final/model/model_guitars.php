@@ -113,6 +113,42 @@ function updateGuitar($id, $gBrand, $gModel, $gColor, $gBridge, $gPickups, $gStr
 }
 
 
+function searchGuitars($gBrand, $gModel, $gStrings){
+    global $db;
+
+    $results = [];
+
+    $binds = [];
+
+    $sql = 'SELECT * FROM guitars WHERE 0 = 0';
+
+    if($gBrand != ''){
+        $sql .= ' AND brand LIKE :b';
+        $binds['b'] = '%'. $gBrand .'%';
+    }
+
+    if($gModel != ''){
+        $sql .= ' AND model LIKE :m';
+        $binds['m'] = '%'. $gModel .'%';
+    }
+
+    if($gStrings != ''){
+        $sql .= ' AND strings LIKE :s';
+        $binds['s'] = '%'. $gStrings .'%';
+    }
+
+    $sql .= " ORDER BY brand, model, color, bridge, pickups, strings, price";
+
+    $stmt = $db->prepare($sql);
+
+    if($stmt->execute($binds) && $stmt->rowCount() > 0){
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    return $results;
+
+}
+
 
 
 

@@ -1,10 +1,10 @@
 <?php 
-    //insert into guitars (`brand`, `model`, `color`, `bridge`, `pickups`, `strings`, `price`) values ('Epiphone', 'Pro-1', 'Vintage Sunburst', 'Granadillo', 'None', 6, '159.99');
-    include 'includes/header.php';
-    include 'includes/style.php';
+    session_start();
+
     include 'model/model_admin.php';
 
-    session_start();
+    //insert into guitars (`brand`, `model`, `color`, `bridge`, `pickups`, `strings`, `price`) values ('Epiphone', 'Pro-1', 'Vintage Sunburst', 'Granadillo', 'None', 6, '159.99');
+
         $_SESSION['isLoggedIn'] = false;
         $_SESSION['username'] = '';
         $error = '';
@@ -21,16 +21,13 @@
                 header('Location: admin_page.php');
             }
             else{
-                $error = "You did not provide correct creds";
+                $error = "Error! Incorrect credentials.";
             }
-
-
-
         }
+
+    include 'includes/header.php';
+    include 'includes/style.php';
 ?>
-
-
-
 
 
 <nav>

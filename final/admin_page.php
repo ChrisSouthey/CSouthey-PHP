@@ -11,6 +11,18 @@ $color = '';
 $bridge = '';
 $pickups = '';
 
+if(isset($_POST['search'])){
+    $brand = filter_input(INPUT_POST,'brand');
+    $model = filter_input(INPUT_POST,'model');
+    $strings = filter_input(INPUT_POST,'strings');
+    
+    $guitars = searchGuitars($brand, $model, $strings);
+}
+
+if(isset($_POST['clear'])){
+    $guitars = getGuitars();
+}
+
 ?>
 
 <nav>
@@ -38,6 +50,9 @@ $pickups = '';
             </div>
             <div class="sea"> <!-- SEARCH BUTTON -->
                 <input type="submit" name="search" value="Search">
+            </div>
+            <div class="sea"> <!-- CLEAR FILTER BUTTON -->
+                <input type="submit" name="clear" value="Clear Filter">
             </div>
         <form>
     </div>
