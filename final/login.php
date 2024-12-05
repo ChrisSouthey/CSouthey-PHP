@@ -64,3 +64,4 @@
 <footer>
     <h3>© Chris Southey</h3>
 </footer>
+<?php include 'includes/footer.php'; ?>
